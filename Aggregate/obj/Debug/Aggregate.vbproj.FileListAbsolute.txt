@@ -1,0 +1,14 @@
+D:\Projects\Aggregate\Aggregate\bin\Debug\Aggregate.exe.config
+D:\Projects\Aggregate\Aggregate\bin\Debug\Aggregate.exe
+D:\Projects\Aggregate\Aggregate\bin\Debug\Aggregate.pdb
+D:\Projects\Aggregate\Aggregate\bin\Debug\Aggregate.xml
+D:\Projects\Aggregate\Aggregate\obj\Debug\Aggregate.vbprojResolveAssemblyReference.cache
+D:\Projects\Aggregate\Aggregate\obj\Debug\Aggregate.Resources.resources
+D:\Projects\Aggregate\Aggregate\obj\Debug\Aggregate.vbproj.GenerateResource.Cache
+D:\Projects\Aggregate\Aggregate\obj\Debug\Aggregate.vbproj.CoreCompileInputs.cache
+D:\Projects\Aggregate\Aggregate\obj\Debug\Aggregate.exe
+D:\Projects\Aggregate\Aggregate\obj\Debug\Aggregate.xml
+D:\Projects\Aggregate\Aggregate\obj\Debug\Aggregate.pdb
+D:\Projects\Aggregate\Aggregate\obj\Debug\Aggregate.Main.resources
+D:\Projects\Aggregate\Aggregate\obj\Debug\Aggregate.Steam_Scanner.resources
+D:\Projects\Aggregate\Aggregate\obj\Debug\Aggregate.Steam_Games.resources

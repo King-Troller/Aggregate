@@ -1,0 +1,13 @@
+D:\Projects\Aggregate\Aggregate\bin\Release\Aggregate.exe.config
+D:\Projects\Aggregate\Aggregate\bin\Release\Aggregate.exe
+D:\Projects\Aggregate\Aggregate\bin\Release\Aggregate.pdb
+D:\Projects\Aggregate\Aggregate\bin\Release\Aggregate.xml
+D:\Projects\Aggregate\Aggregate\obj\Release\Aggregate.Main.resources
+D:\Projects\Aggregate\Aggregate\obj\Release\Aggregate.Resources.resources
+D:\Projects\Aggregate\Aggregate\obj\Release\Aggregate.Steam_Games.resources
+D:\Projects\Aggregate\Aggregate\obj\Release\Aggregate.Steam_Scanner.resources
+D:\Projects\Aggregate\Aggregate\obj\Release\Aggregate.vbproj.GenerateResource.Cache
+D:\Projects\Aggregate\Aggregate\obj\Release\Aggregate.vbproj.CoreCompileInputs.cache
+D:\Projects\Aggregate\Aggregate\obj\Release\Aggregate.exe
+D:\Projects\Aggregate\Aggregate\obj\Release\Aggregate.xml
+D:\Projects\Aggregate\Aggregate\obj\Release\Aggregate.pdb
