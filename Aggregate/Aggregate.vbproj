@@ -90,6 +90,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalVal.vb" />
     <Compile Include="Main.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -103,7 +104,7 @@
     <Compile Include="Steam\Steam Games.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SteamFiles.vb" />
+    <Compile Include="Steam\SteamFiles.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

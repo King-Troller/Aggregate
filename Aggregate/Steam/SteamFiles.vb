@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Text.RegularExpressions
+Imports System.Xml
 
 Module SteamFiles
 
@@ -66,10 +67,10 @@ Module SteamFiles
             appId = appId.Remove(appId.Length - 1)
             name = name.Remove(0, 9)
             name = name.Remove(name.Length - 1)
-            name = name.Trim
-            appId = appId.Trim
             name = Regex.Replace(name, "[^A-Za-z0-9\-/\s']", "")
             appId = Regex.Replace(appId, "[^A-Za-z0-9\-/\s']", "")
+            name = name.Trim
+            appId = appId.Trim
             gamelist.Add(name)
             idlist.Add(appId)
         Next manifestlist
@@ -86,10 +87,10 @@ Module SteamFiles
                 appId = appId.Remove(appId.Length - 1)
                 name = name.Remove(0, 9)
                 name = name.Remove(name.Length - 1)
-                name = name.Trim
-                appId = appId.Trim
                 name = Regex.Replace(name, "[^A-Za-z0-9\-/\s']", "")
                 appId = Regex.Replace(appId, "[^A-Za-z0-9\-/\s']", "")
+                name = name.Trim
+                appId = appId.Trim
                 gamelist.Add(name)
                 idlist.Add(appId)
             Next manifestlist2
@@ -108,10 +109,10 @@ Module SteamFiles
                 appId = appId.Remove(appId.Length - 1)
                 name = name.Remove(0, 9)
                 name = name.Remove(name.Length - 1)
-                name = name.Trim
-                appId = appId.Trim
                 name = Regex.Replace(name, "[^A-Za-z0-9\-/\s']", "")
                 appId = Regex.Replace(appId, "[^A-Za-z0-9\-/\s']", "")
+                name = name.Trim
+                appId = appId.Trim
                 gamelist.Add(name)
                 idlist.Add(appId)
             Next manifestlist3
@@ -130,13 +131,36 @@ Module SteamFiles
                 appId = appId.Remove(appId.Length - 1)
                 name = name.Remove(0, 9)
                 name = name.Remove(name.Length - 1)
-                name = name.Trim
-                appId = appId.Trim
                 name = Regex.Replace(name, "[^A-Za-z0-9\-/\s']", "")
                 appId = Regex.Replace(appId, "[^A-Za-z0-9\-/\s']", "")
+                name = name.Trim
+                appId = appId.Trim
                 gamelist.Add(name)
                 idlist.Add(appId)
             Next manifestlist4
         End If
+
+
+
+        If File.Exists(settingsFolder & "\steamsettings.xml") = False Then
+            Dim settings As New XmlWriterSettings()
+            settings.Indent = True
+
+            Dim XmlWrt As XmlWriter = XmlWriter.Create(settingsFolder & "\steamsettings.xml", settings)
+
+            With XmlWrt
+
+                .WriteStartDocument()
+                .WriteComment("Steam Settings")
+                .WriteStartElement("GameOptions")
+                .WriteStartElement("GameName")
+                .WriteString("Launch options here")
+                .WriteEndElement()
+                .WriteEndDocument()
+                .Close()
+            End With
+        Else
+        End If
+
     End Sub
 End Module

@@ -7,11 +7,15 @@
         RichTextBox1.SelectionFont = New Font("Lucinda Console", 16)
         ' Set the text within the control.
         RichTextBox1.SelectedText = "Please wait while your Steam games are found"
+        Dim regKey As Object = My.Computer.Registry.LocalMachine.OpenSubKey("SOFTWARE\Valve\Steam", True).GetValue("InstallPath")
+        If regKey Is Nothing Then
+            MsgBox("Steam installation not found")
+        Else
+            Call SteamFiles.SteamFiles()
+            Steam_Games.Show()
+            Me.Close()
+        End If
 
-        Call SteamFiles.SteamFiles()
-
-        Steam_Games.Show()
-        Me.Close()
     End Sub
 
 End Class
