@@ -52,10 +52,12 @@ Public Class Steam_Games
 
     End Sub
 
+    'Start the game when button is pressed
     Private Sub PlayButton_Click(sender As Object, e As EventArgs) Handles playButton.Click
         Process.Start("steam://rungameid/" & gameIndex & " " & launchSettings.Text)
     End Sub
 
+    'Save launch options on button press
     Private Sub SaveSettings_Click(sender As Object, e As EventArgs) Handles saveSettings.Click
         Dim xmlDoc As XmlDocument = New XmlDocument()
         xmlDoc.Load(settingsFolder & "\steamsettings.xml")
