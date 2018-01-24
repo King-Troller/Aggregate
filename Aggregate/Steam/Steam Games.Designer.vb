@@ -27,6 +27,12 @@ Partial Class Steam_Games
         Me.launchSettings = New System.Windows.Forms.TextBox()
         Me.saveSettings = New System.Windows.Forms.Button()
         Me.GameImage = New System.Windows.Forms.PictureBox()
+        Me.ExtraProgram1 = New System.Windows.Forms.TextBox()
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.ExtraSelect1 = New System.Windows.Forms.Button()
+        Me.ExtraSelect2 = New System.Windows.Forms.Button()
+        Me.ExtraProgram2 = New System.Windows.Forms.TextBox()
+        Me.RichTextBox2 = New System.Windows.Forms.RichTextBox()
         CType(Me.GameImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -37,13 +43,13 @@ Partial Class Steam_Games
         Me.steamBox.ItemHeight = 18
         Me.steamBox.Location = New System.Drawing.Point(12, 20)
         Me.steamBox.Name = "steamBox"
-        Me.steamBox.Size = New System.Drawing.Size(304, 724)
+        Me.steamBox.Size = New System.Drawing.Size(426, 724)
         Me.steamBox.TabIndex = 0
         '
         'playButton
         '
         Me.playButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.playButton.Location = New System.Drawing.Point(358, 670)
+        Me.playButton.Location = New System.Drawing.Point(511, 670)
         Me.playButton.Name = "playButton"
         Me.playButton.Size = New System.Drawing.Size(289, 74)
         Me.playButton.TabIndex = 1
@@ -52,34 +58,93 @@ Partial Class Steam_Games
         '
         'launchSettings
         '
-        Me.launchSettings.Location = New System.Drawing.Point(358, 147)
+        Me.launchSettings.Location = New System.Drawing.Point(469, 193)
         Me.launchSettings.Name = "launchSettings"
         Me.launchSettings.Size = New System.Drawing.Size(380, 20)
         Me.launchSettings.TabIndex = 2
         '
         'saveSettings
         '
-        Me.saveSettings.Location = New System.Drawing.Point(663, 173)
+        Me.saveSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.saveSettings.Location = New System.Drawing.Point(591, 465)
         Me.saveSettings.Name = "saveSettings"
-        Me.saveSettings.Size = New System.Drawing.Size(75, 23)
+        Me.saveSettings.Size = New System.Drawing.Size(132, 55)
         Me.saveSettings.TabIndex = 3
         Me.saveSettings.Text = "Save"
         Me.saveSettings.UseVisualStyleBackColor = True
         '
         'GameImage
         '
-        Me.GameImage.Location = New System.Drawing.Point(358, 20)
+        Me.GameImage.Location = New System.Drawing.Point(469, 12)
         Me.GameImage.Name = "GameImage"
         Me.GameImage.Size = New System.Drawing.Size(380, 112)
         Me.GameImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.GameImage.TabIndex = 4
         Me.GameImage.TabStop = False
         '
+        'ExtraProgram1
+        '
+        Me.ExtraProgram1.Location = New System.Drawing.Point(469, 283)
+        Me.ExtraProgram1.Name = "ExtraProgram1"
+        Me.ExtraProgram1.Size = New System.Drawing.Size(297, 20)
+        Me.ExtraProgram1.TabIndex = 5
+        '
+        'RichTextBox1
+        '
+        Me.RichTextBox1.Enabled = False
+        Me.RichTextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RichTextBox1.Location = New System.Drawing.Point(469, 244)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.Size = New System.Drawing.Size(331, 33)
+        Me.RichTextBox1.TabIndex = 6
+        Me.RichTextBox1.Text = "Programs to start with the game"
+        '
+        'ExtraSelect1
+        '
+        Me.ExtraSelect1.Location = New System.Drawing.Point(772, 282)
+        Me.ExtraSelect1.Name = "ExtraSelect1"
+        Me.ExtraSelect1.Size = New System.Drawing.Size(75, 22)
+        Me.ExtraSelect1.TabIndex = 7
+        Me.ExtraSelect1.Text = "Select"
+        Me.ExtraSelect1.UseVisualStyleBackColor = True
+        '
+        'ExtraSelect2
+        '
+        Me.ExtraSelect2.Location = New System.Drawing.Point(772, 308)
+        Me.ExtraSelect2.Name = "ExtraSelect2"
+        Me.ExtraSelect2.Size = New System.Drawing.Size(75, 22)
+        Me.ExtraSelect2.TabIndex = 9
+        Me.ExtraSelect2.Text = "Select"
+        Me.ExtraSelect2.UseVisualStyleBackColor = True
+        '
+        'ExtraProgram2
+        '
+        Me.ExtraProgram2.Location = New System.Drawing.Point(469, 309)
+        Me.ExtraProgram2.Name = "ExtraProgram2"
+        Me.ExtraProgram2.Size = New System.Drawing.Size(297, 20)
+        Me.ExtraProgram2.TabIndex = 8
+        '
+        'RichTextBox2
+        '
+        Me.RichTextBox2.Enabled = False
+        Me.RichTextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RichTextBox2.Location = New System.Drawing.Point(469, 154)
+        Me.RichTextBox2.Name = "RichTextBox2"
+        Me.RichTextBox2.Size = New System.Drawing.Size(331, 33)
+        Me.RichTextBox2.TabIndex = 6
+        Me.RichTextBox2.Text = "Game launch options"
+        '
         'Steam_Games
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(768, 769)
+        Me.ClientSize = New System.Drawing.Size(861, 769)
+        Me.Controls.Add(Me.ExtraSelect2)
+        Me.Controls.Add(Me.ExtraProgram2)
+        Me.Controls.Add(Me.ExtraSelect1)
+        Me.Controls.Add(Me.RichTextBox2)
+        Me.Controls.Add(Me.RichTextBox1)
+        Me.Controls.Add(Me.ExtraProgram1)
         Me.Controls.Add(Me.GameImage)
         Me.Controls.Add(Me.saveSettings)
         Me.Controls.Add(Me.launchSettings)
@@ -99,4 +164,10 @@ Partial Class Steam_Games
     Friend WithEvents launchSettings As TextBox
     Friend WithEvents saveSettings As Button
     Friend WithEvents GameImage As PictureBox
+    Friend WithEvents ExtraProgram1 As TextBox
+    Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents ExtraSelect1 As Button
+    Friend WithEvents ExtraSelect2 As Button
+    Friend WithEvents ExtraProgram2 As TextBox
+    Friend WithEvents RichTextBox2 As RichTextBox
 End Class

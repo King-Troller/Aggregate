@@ -10,6 +10,7 @@ Public Class Steam_Games
     Private Sub Steam_Games_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         steamBox.Items.Clear()
         steamBox.Items.AddRange(gamelist.ToArray)
+        steamBox.Sorted = True
     End Sub
 
     Private Sub SteamBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles steamBox.SelectedIndexChanged
@@ -32,17 +33,34 @@ Public Class Steam_Games
 
         spacelessName = steamBox.SelectedItem.Replace(" ", "")
         launchSettings.Text = ""
+        ExtraProgram1.Text = ""
+        ExtraProgram2.Text = ""
         Dim settingsXml As New XmlDocument
         settingsXml.Load(settingsFolder & "\steamsettings.xml")
         Dim childNodes As XmlNodeList = settingsXml.GetElementsByTagName(spacelessName)
         Dim nodeTxt As String = ""
-        For Each child As XmlNode In childNodes
-            nodeTxt = child.InnerText
-            launchSettings.Text = nodeTxt
-        Next child
 
-        'Load the images from the steam servers
-        Dim imageLocation As String = settingsFolder & "\" & spacelessName & ".jpg"
+        Dim root As XmlNode = childNodes(0)
+        If root IsNot Nothing Then
+            If root.HasChildNodes Then
+                Dim cycle As Integer
+                For cycle = 0 To root.ChildNodes.Count - 1
+                    Dim chosenValue As String = root.ChildNodes(cycle).InnerText
+                    If cycle = 0 Then
+                        launchSettings.Text = chosenValue
+                    ElseIf cycle = 1 Then
+                        ExtraProgram1.Text = chosenValue
+                    Else
+                        ExtraProgram2.Text = chosenValue
+                    End If
+                Next cycle
+            Else
+            End If
+        End If
+
+
+        'Load the images from the steam servers/cache folder
+        Dim imageLocation As String = settingsFolder & "\imagecache\" & spacelessName & ".jpg"
         If File.Exists(imageLocation) = False Then
             My.Computer.Network.DownloadFile("http://cdn.akamai.steamstatic.com/steam/apps/" & gameIndex & "/header.jpg", imageLocation)
             GameImage.Image = Image.FromFile(imageLocation)
@@ -61,12 +79,57 @@ Public Class Steam_Games
     Private Sub SaveSettings_Click(sender As Object, e As EventArgs) Handles saveSettings.Click
         Dim xmlDoc As XmlDocument = New XmlDocument()
         xmlDoc.Load(settingsFolder & "\steamsettings.xml")
+        Dim objTest As XmlElement
+        objTest = xmlDoc.SelectSingleNode("/GameOptions/" & spacelessName)
+        If objTest Is Nothing Then
 
-        Dim newNode = spacelessName
-        With xmlDoc.SelectSingleNode("/GameOptions").CreateNavigator().AppendChild()
-            .WriteElementString(spacelessName, launchSettings.Text)
-            .Close()
-        End With
+            Dim newNode = spacelessName
+            With xmlDoc.SelectSingleNode("/GameOptions").CreateNavigator().AppendChild()
+                .WriteStartElement(spacelessName)
+                .WriteElementString("LaunchOptions", launchSettings.Text)
+                .WriteElementString("ExtraProgram1", ExtraProgram1.Text)
+                .WriteElementString("ExtraProgram2", ExtraProgram2.Text)
+                .WriteEndElement()
+                .Close()
+            End With
+        Else
+            Dim replaceNode As XmlNode = xmlDoc.SelectSingleNode("/GameOptions/" & spacelessName)
+            If replaceNode IsNot Nothing Then
+                replaceNode.ChildNodes(0).InnerText = launchSettings.Text
+                replaceNode.ChildNodes(1).InnerText = ExtraProgram1.Text
+                replaceNode.ChildNodes(2).InnerText = ExtraProgram2.Text
+            End If
+        End If
+
         xmlDoc.Save(settingsFolder & "\steamsettings.xml")
     End Sub
+
+    'Allow user to select extra programs
+    Private Sub ExtraSelect1_Click(sender As Object, e As EventArgs) Handles ExtraSelect1.Click
+        Dim selectedFile As OpenFileDialog = New OpenFileDialog()
+        Dim fileName As String
+
+        selectedFile.Title = "Select program"
+        selectedFile.InitialDirectory = settingsFolder
+        selectedFile.RestoreDirectory = True
+        If selectedFile.ShowDialog() = DialogResult.OK Then
+            fileName = selectedFile.FileName
+            ExtraProgram1.Text = fileName
+        End If
+
+    End Sub
+
+    Private Sub ExtraSelect2_Click(sender As Object, e As EventArgs) Handles ExtraSelect2.Click
+        Dim selectedFile As OpenFileDialog = New OpenFileDialog()
+        Dim fileName As String
+
+        selectedFile.Title = "Select program"
+        selectedFile.InitialDirectory = settingsFolder
+        selectedFile.RestoreDirectory = True
+        If selectedFile.ShowDialog() = DialogResult.OK Then
+            fileName = selectedFile.FileName
+            ExtraProgram2.Text = fileName
+        End If
+    End Sub
+
 End Class
