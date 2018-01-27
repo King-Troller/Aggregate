@@ -22,34 +22,34 @@ Partial Class Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Steam = New System.Windows.Forms.PictureBox()
-        CType(Me.Steam, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.steam = New System.Windows.Forms.PictureBox()
+        CType(Me.steam, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Steam
+        'steam
         '
-        Me.Steam.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Steam.Image = Global.Aggregate.My.Resources.Resources.steam_logo
-        Me.Steam.InitialImage = Nothing
-        Me.Steam.Location = New System.Drawing.Point(12, 12)
-        Me.Steam.Name = "Steam"
-        Me.Steam.Size = New System.Drawing.Size(312, 111)
-        Me.Steam.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.Steam.TabIndex = 0
-        Me.Steam.TabStop = False
+        Me.steam.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.steam.Image = Global.Aggregate.My.Resources.customresources.steam_logo
+        Me.steam.InitialImage = Nothing
+        Me.steam.Location = New System.Drawing.Point(12, 12)
+        Me.steam.Name = "steam"
+        Me.steam.Size = New System.Drawing.Size(250, 80)
+        Me.steam.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.steam.TabIndex = 0
+        Me.steam.TabStop = False
         '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1086, 543)
-        Me.Controls.Add(Me.Steam)
+        Me.ClientSize = New System.Drawing.Size(551, 382)
+        Me.Controls.Add(Me.steam)
         Me.Name = "Main"
         Me.Text = "Aggregate"
-        CType(Me.Steam, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.steam, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents Steam As PictureBox
+    Friend WithEvents steam As PictureBox
 End Class

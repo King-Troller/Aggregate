@@ -90,12 +90,16 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GlobalVal.vb" />
-    <Compile Include="Main.vb">
-      <SubType>Form</SubType>
+    <Compile Include="customresources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>customresources.resx</DependentUpon>
     </Compile>
+    <Compile Include="GlobalVal.vb" />
     <Compile Include="Main.Designer.vb">
       <DependentUpon>Main.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Main.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Steam\Steam Games.Designer.vb">
@@ -137,6 +141,11 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="customresources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>customresources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Steam\Steam Games.resx">
       <DependentUpon>Steam Games.vb</DependentUpon>
     </EmbeddedResource>
@@ -158,9 +167,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\steam_logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
@@ -172,5 +178,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

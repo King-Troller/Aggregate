@@ -2,14 +2,18 @@
 Imports System.Text.RegularExpressions
 Imports System.Xml
 Imports System.IO
+Imports System.Net
 
 Public Class Steam_Games
 
     Dim gameIndex As String
     Dim spacelessName As String
-    Private Sub Steam_Games_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        steamBox.Items.Clear()
-        steamBox.Items.AddRange(gamelist.ToArray)
+
+    Private Sub Steam_Games_Show(sender As Object, e As EventArgs) Handles MyBase.Shown
+        If finalList Is Nothing Then
+            finalList = gamelist.ToArray
+        End If
+        steamBox.Items.AddRange(finalList)
         steamBox.Sorted = True
     End Sub
 
@@ -61,11 +65,16 @@ Public Class Steam_Games
 
         'Load the images from the steam servers/cache folder
         Dim imageLocation As String = settingsFolder & "\imagecache\" & spacelessName & ".jpg"
-        If File.Exists(imageLocation) = False Then
-            My.Computer.Network.DownloadFile("http://cdn.akamai.steamstatic.com/steam/apps/" & gameIndex & "/header.jpg", imageLocation)
+        If File.Exists(imageLocation) = True Then
             GameImage.Image = Image.FromFile(imageLocation)
         Else
-            GameImage.Image = Image.FromFile(imageLocation)
+            If CheckURL("http://cdn.akamai.steamstatic.com/steam/apps/" & gameIndex & "/header.jpg") = True Then
+                My.Computer.Network.DownloadFile("http://cdn.akamai.steamstatic.com/steam/apps/" & gameIndex & "/header.jpg", imageLocation)
+                GameImage.Image = Image.FromFile(imageLocation)
+            Else
+                GameImage.Image = My.Resources.customresources.no_image
+            End If
+
         End If
 
     End Sub
@@ -73,6 +82,16 @@ Public Class Steam_Games
     'Start the game when button is pressed
     Private Sub PlayButton_Click(sender As Object, e As EventArgs) Handles playButton.Click
         Process.Start("steam://rungameid/" & gameIndex & " " & launchSettings.Text)
+        If ExtraProgram1 IsNot Nothing Then
+            If File.Exists(ExtraProgram1.Text) Then
+                Process.Start(ExtraProgram1.Text)
+            End If
+        End If
+        If ExtraProgram2 IsNot Nothing Then
+            If File.Exists(ExtraProgram2.Text) Then
+                Process.Start(ExtraProgram2.Text)
+            End If
+        End If
     End Sub
 
     'Save launch options on button press
