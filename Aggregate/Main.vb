@@ -10,4 +10,15 @@
     Private Sub Steam_Click(sender As Object, e As EventArgs) Handles Steam.Click
         Steam_Scanner.Show()
     End Sub
+
+    Private Sub Emulators_Click(sender As Object, e As EventArgs) Handles Emulators.Click
+        Emulation.Show()
+    End Sub
+
+    Private Sub Blizzard_Click(sender As Object, e As EventArgs) Handles Blizzard.Click
+        Dim BattlenetPath As String = BlizzardFinder()
+        If BattlenetPath IsNot Nothing Then
+            Process.Start(BattlenetPath)
+        End If
+    End Sub
 End Class

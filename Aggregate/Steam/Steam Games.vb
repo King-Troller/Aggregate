@@ -39,6 +39,7 @@ Public Class Steam_Games
         launchSettings.Text = ""
         ExtraProgram1.Text = ""
         ExtraProgram2.Text = ""
+        Alternate.Text = ""
         Dim settingsXml As New XmlDocument
         settingsXml.Load(settingsFolder & "\steamsettings.xml")
         Dim childNodes As XmlNodeList = settingsXml.GetElementsByTagName(spacelessName)
@@ -54,8 +55,10 @@ Public Class Steam_Games
                         launchSettings.Text = chosenValue
                     ElseIf cycle = 1 Then
                         ExtraProgram1.Text = chosenValue
-                    Else
+                    ElseIf cycle = 2 Then
                         ExtraProgram2.Text = chosenValue
+                    Else
+                        Alternate.Text = chosenValue
                     End If
                 Next cycle
             Else
@@ -72,7 +75,7 @@ Public Class Steam_Games
                 My.Computer.Network.DownloadFile("http://cdn.akamai.steamstatic.com/steam/apps/" & gameIndex & "/header.jpg", imageLocation)
                 GameImage.Image = Image.FromFile(imageLocation)
             Else
-                GameImage.Image = My.Resources.customresources.no_image
+                GameImage.Image = My.Resources.customresources.noimage
             End If
 
         End If
@@ -81,7 +84,12 @@ Public Class Steam_Games
 
     'Start the game when button is pressed
     Private Sub PlayButton_Click(sender As Object, e As EventArgs) Handles playButton.Click
-        Process.Start("steam://rungameid/" & gameIndex & " " & launchSettings.Text)
+
+        If Alternate.Text = "" Then
+            Process.Start("steam://rungameid/" & gameIndex & " " & launchSettings.Text)
+        Else
+            Process.Start(Alternate.Text & " " & launchSettings.Text)
+        End If
         If ExtraProgram1 IsNot Nothing Then
             If File.Exists(ExtraProgram1.Text) Then
                 Process.Start(ExtraProgram1.Text)
@@ -108,6 +116,7 @@ Public Class Steam_Games
                 .WriteElementString("LaunchOptions", launchSettings.Text)
                 .WriteElementString("ExtraProgram1", ExtraProgram1.Text)
                 .WriteElementString("ExtraProgram2", ExtraProgram2.Text)
+                .WriteElementString("Alternate", Alternate.Text)
                 .WriteEndElement()
                 .Close()
             End With
@@ -117,6 +126,7 @@ Public Class Steam_Games
                 replaceNode.ChildNodes(0).InnerText = launchSettings.Text
                 replaceNode.ChildNodes(1).InnerText = ExtraProgram1.Text
                 replaceNode.ChildNodes(2).InnerText = ExtraProgram2.Text
+                replaceNode.ChildNodes(3).InnerText = Alternate.Text
             End If
         End If
 
@@ -148,6 +158,20 @@ Public Class Steam_Games
         If selectedFile.ShowDialog() = DialogResult.OK Then
             fileName = selectedFile.FileName
             ExtraProgram2.Text = fileName
+        End If
+    End Sub
+
+    'Allows user to choose alternative target to launch (eg. Nexus MM, Mod Organizer, etc)
+    Private Sub AlternateSelect_Click(sender As Object, e As EventArgs) Handles AlternateSelect.Click
+        Dim selectedFile As OpenFileDialog = New OpenFileDialog()
+        Dim fileName As String
+
+        selectedFile.Title = "Select program"
+        selectedFile.InitialDirectory = settingsFolder
+        selectedFile.RestoreDirectory = True
+        If selectedFile.ShowDialog() = DialogResult.OK Then
+            fileName = selectedFile.FileName
+            Alternate.Text = fileName
         End If
     End Sub
 
